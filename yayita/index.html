@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feliz Cumpleaños, Aida 💖</title>
+
+  <!-- Fuente elegante (opcional). Si no carga, usa system-ui -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#0f1020;
+      --bg2:#1b1636;
+      --card:#ffffff12;
+      --stroke:#ffffff1f;
+      --text:#f6f2ff;
+      --muted:#d8cff6cc;
+
+      --accent:#ff4da6;
+      --accent2:#6cf0ff;
+
+      --radius:24px;
+      --radius2:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, #ff4da625, transparent 60%),
+        radial-gradient(900px 700px at 80% 15%, #6cf0ff22, transparent 55%),
+        radial-gradient(800px 700px at 60% 90%, #b26bff1d, transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* Decor glow */
+    .glow{
+      position:fixed;
+      inset:auto auto -220px -220px;
+      width:520px;height:520px;
+      filter: blur(60px);
+      background: radial-gradient(circle at 30% 30%, #ff4da655, transparent 55%),
+                  radial-gradient(circle at 70% 70%, #6cf0ff44, transparent 55%);
+      z-index:-1;
+      opacity:.75;
+    }
+
+    .wrap{max-width:1050px;margin:0 auto;padding:30px 18px 64px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 860px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.40);
+      backdrop-filter: blur(12px);
+    }
+
+    .title{
+      font-size: clamp(30px, 4.2vw, 50px);
+      line-height:1.02;
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+    .subtitle{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size: clamp(14px, 1.8vw, 17px);
+      line-height:1.55;
+    }
+
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, #ffffff2a, transparent);
+      margin:16px 0;
+    }
+
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:#0000001a;
+      color:var(--muted);
+      font-size:13px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .pill b{color:var(--text); font-weight:750}
+
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    button{
+      appearance:none;
+      border:none;
+      border-radius:16px;
+      padding:12px 14px;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .08s ease, filter .2s ease, background .2s ease;
+    }
+    button:active{transform: translateY(1px) scale(.99)}
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--accent), #ff7ac4);
+      color:#180010;
+      box-shadow: 0 16px 45px rgba(255,77,166,.22);
+    }
+    .btnGhost{
+      background:#ffffff10;
+      border:1px solid var(--stroke);
+      color:var(--text);
+    }
+    .btnGhost:hover{filter: brightness(1.08)}
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+    @media (max-width: 860px){ .grid2{grid-template-columns:1fr} }
+
+    .sectionTitle{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-0.01em;
+    }
+
+    .small{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    .quote{
+      margin:0;
+      padding:14px 14px;
+      border:1px solid #ffffff1f;
+      background:#00000014;
+      border-radius:16px;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    /* Countdown */
+    .count{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .box{
+      min-width:110px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:#00000016;
+      border:1px solid var(--stroke);
+      text-align:center;
+    }
+    .num{font-size:30px;font-weight:900;letter-spacing:-.03em}
+    .lab{font-size:12px;color:var(--muted);margin-top:2px}
+
+    /* Spotify */
+    .playerWrap{
+      width:100%;
+      margin-top:12px;
+      border-radius:var(--radius2);
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      background:#00000020;
+    }
+    .playerWrap iframe{width:100%; border:0; display:block; height:352px}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width: 560px){ .gallery{grid-template-columns: repeat(2, 1fr)} }
+
+    .ph{
+      position:relative;
+      aspect-ratio: 1/1;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(400px 300px at 20% 20%, #ffffff14, transparent 50%),
+        linear-gradient(180deg, #ffffff10, #00000020);
+    }
+    .ph img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.05) contrast(1.02);
+      transform: scale(1.01);
+    }
+    .ph::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45));
+      pointer-events:none;
+    }
+    .ph .tag{
+      position:absolute;
+      left:10px; bottom:10px;
+      padding:7px 10px;
+      font-size:12px;
+      border-radius:999px;
+      background:#00000066;
+      border:1px solid #ffffff2a;
+      color:#fff;
+      backdrop-filter: blur(10px);
+      z-index:1;
+    }
+
+    /* Fallback bonito si no carga la imagen */
+    .ph img:not([src]), .ph img[src=""], .ph img[alt]{
+      background: transparent;
+    }
+    .ph .phFallback{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:#ffffff88;
+      font-size:12px;
+      z-index:0;
+    }
+
+    /* Hearts */
+    .heart{
+      position:fixed;
+      left:0; top:0;
+      width:14px; height:14px;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background: var(--accent);
+      pointer-events:none;
+      opacity:.85;
+      animation: floatUp 3.6s ease-in forwards;
+      box-shadow: 0 10px 22px rgba(255,77,166,.22);
+      z-index:50;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:14px;height:14px;
+      background:inherit;
+      border-radius:50%;
+    }
+    .heart::before{left:-7px;top:0}
+    .heart::after{left:0;top:-7px}
+    @keyframes floatUp{
+      0%{transform: translate(-50%,-50%) rotate(45deg) scale(.9);opacity:.0}
+      10%{opacity:.9}
+      100%{transform: translate(calc(-50% + var(--dx)), calc(-50% - 380px)) rotate(45deg) scale(1.25);opacity:0}
+    }
+
+    /* Confetti */
+    canvas#confetti{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:40;
+    }
+
+    footer{
+      margin-top:20px;
+      color:#ffffff88;
+      font-size:12px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+<div class="glow"></div>
+<canvas id="confetti"></canvas>
+
+<div class="wrap">
+  <div class="hero">
+    <section class="card">
+      <h1 class="title">Feliz cumpleaños, <span style="color:var(--accent)">Aida</span> 💖</h1>
+      <p class="subtitle">
+        Hoy celebro que existas. Tu risa me ordena el día, tu mirada me da paz, y tu forma de estar en el mundo lo vuelve más bonito.
+        <br><br>
+        Si tuviera que resumirlo: contigo, todo tiene más sentido.
+      </p>
+
+      <div class="pillrow">
+        <div class="pill">🎂 <b>07</b> agosto</div>
+        <div class="pill">✨ 2006</div>
+        <div class="pill">🕯️ “Mi apaga la vela fav”</div>
+      </div>
+
+      <div class="actions">
+        <button class="btnPrimary" id="btnHearts">Lluvia de corazones</button>
+        <button class="btnGhost" id="btnConfetti">Confeti</button>
+        <button class="btnGhost" id="btnScroll">Ver fotos</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid2">
+        <div class="card" style="padding:16px;border-radius:18px">
+          <h3 class="sectionTitle">Cuenta regresiva</h3>
+          <p class="small" id="countHint">Para tu próximo cumpleaños 🎉</p>
+          <div class="count" id="countdown">
+            <div class="box"><div class="num" id="d">--</div><div class="lab">Días</div></div>
+            <div class="box"><div class="num" id="h">--</div><div class="lab">Horas</div></div>
+            <div class="box"><div class="num" id="m">--</div><div class="lab">Min</div></div>
+            <div class="box"><div class="num" id="s">--</div><div class="lab">Seg</div></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px;border-radius:18px">
+          <h3 class="sectionTitle">Tres cosas que amo de ti</h3>
+          <p class="quote">
+            Hay muchas cosas que me gustan de ti, pero hay tres que siempre vuelven a mi mente porque resumen lo que eres en esencia.
+            <br><br>
+            Amo tu manera de cuidar sin hacer ruido… admiro tu valentía cuando nadie la ve… y tu sonrisa, que me deja sin argumentos.
+            <br><br>
+            Si tuviera que resumirlo: eres cuidado, fortaleza y luz. Por eso te quiero.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="card">
+      <h3 class="sectionTitle" style="margin-bottom:6px">Música (Michael Jackson)</h3>
+      <p class="small">
+        Esta canción es mi forma de decirte algo simple y real: <b>nunca estás sola</b>.
+        <br>
+        En los días buenos y en los que cuestan, estoy contigo. Siempre voy a elegir acompañarte.
+        <br><br>
+        <b style="color:var(--accent)">TAMITO MI NIÑA ;)</b>
+      </p>
+
+      <div class="playerWrap" aria-label="Reproductor de Spotify">
+        <iframe
+          src="https://open.spotify.com/embed/track/3AoeaZs8dFemFJr3JdzOL0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="card" style="padding:16px;border-radius:18px">
+        <h3 class="sectionTitle">Mensaje</h3>
+        <p class="quote" style="margin:0">
+          Aida, gracias por ser hogar, impulso y calma.
+          <br><br>
+          Prometo seguir eligiéndote en lo simple: en los días buenos y en los días raros.
+          <br><br>
+          <b>Te amo.</b> — <span style="color:var(--accent)">chaul oliveras alvarez</span>
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="card" id="fotos" style="margin-top:18px">
+    <h3 class="sectionTitle">Nuestros momentos 📸</h3>
+    <p class="small">
+      Estas fotos no son solo recuerdos, son pedacitos de nuestra historia.
+      Cada imagen guarda una risa, una mirada, un momento que me confirma lo afortunado que soy de caminar contigo.
+      <b>Lo que vivimos no es casualidad: es elección… y yo siempre te elijo a ti.</b>
+    </p>
+
+    <div class="gallery" aria-label="Galería de fotos">
+      <div class="ph">
+        <div class="phFallback">Agrega foto1.jpg</div>
+        <img src="foto1.jpg" alt="Foto 1" onerror="this.style.display='none'">
+        <div class="tag">Tu sonrisa</div>
+      </div>
+      <div class="ph">
+        <div class="phFallback">Agrega foto2.jpg</div>
+        <img src="foto2.jpg" alt="Foto 2" onerror="this.style.display='none'">
+        <div class="tag">Nuestro día</div>
+      </div>
+      <div class="ph">
+        <div class="phFallback">Agrega foto3.jpg</div>
+        <img src="foto3.jpg" alt="Foto 3" onerror="this.style.display='none'">
+        <div class="tag">Un recuerdo</div>
+      </div>
+      <div class="ph">
+        <div class="phFallback">Agrega foto4.jpg</div>
+        <img src="foto4.jpg" alt="Foto 4" onerror="this.style.display='none'">
+        <div class="tag">Tu luz</div>
+      </div>
+      <div class="ph">
+        <div class="phFallback">Agrega foto5.jpg</div>
+        <img src="foto5.jpg" alt="Foto 5" onerror="this.style.display='none'">
+        <div class="tag">Nosotros</div>
+      </div>
+      <div class="ph">
+        <div class="phFallback">Agrega foto6.jpg</div>
+        <img src="foto6.jpg" alt="Foto 6" onerror="this.style.display='none'">
+        <div class="tag">Para siempre</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Casate conmigo &lt;3</footer>
+</div>
+
+<script>
+  // ====== Config: próximo cumpleaños (7 de agosto) ======
+  const birthdayMonth = 8; // agosto
+  const birthdayDay = 7;
+
+  function nextBirthdayDate(){
+    const now = new Date();
+    const year = now.getFullYear();
+    const candidate = new Date(year, birthdayMonth-1, birthdayDay, 0, 0, 0);
+    if (candidate.getTime() >= now.getTime()) return candidate;
+    return new Date(year+1, birthdayMonth-1, birthdayDay, 0, 0, 0);
+  }
+
+  function tickCountdown(){
+    const target = nextBirthdayDate();
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+
+    const totalSec = Math.floor(diff/1000);
+    const days = Math.floor(totalSec / (3600*24));
+    const hours = Math.floor((totalSec % (3600*24)) / 3600);
+    const mins  = Math.floor((totalSec % 3600) / 60);
+    const secs  = (totalSec % 60);
+
+    document.getElementById('d').textContent = String(days).padStart(2,'0');
+    document.getElementById('h').textContent = String(hours).padStart(2,'0');
+    document.getElementById('m').textContent = String(mins).padStart(2,'0');
+    document.getElementById('s').textContent = String(secs).padStart(2,'0');
+
+    document.getElementById('countHint').textContent =
+      `Para tu próximo cum (${target.toLocaleDateString('es-MX')}) ♡`;
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  // ====== Corazones ======
+  function spawnHeart(x, y){
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.style.left = x + 'px';
+    h.style.top  = y + 'px';
+    const dx = (Math.random()*160 - 80).toFixed(0) + 'px';
+    h.style.setProperty('--dx', dx);
+    const colors = ['#ff4da6','#ff7ac4','#6cf0ff','#b26bff','#ffd36c'];
+    h.style.background = colors[Math.floor(Math.random()*colors.length)];
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 3600);
+  }
+
+  function heartBurst(n=18){
+    const cx = window.innerWidth * (0.25 + Math.random()*0.5);
+    const cy = window.innerHeight * (0.35 + Math.random()*0.2);
+    for(let i=0;i<n;i++){
+      setTimeout(()=>spawnHeart(cx + (Math.random()*60-30), cy + (Math.random()*40-20)), i*35);
+    }
+  }
+
+  document.getElementById('btnHearts').addEventListener('click', ()=>heartBurst(26));
+  document.addEventListener('click', (e)=>{
+    if(e.target.tagName.toLowerCase() === 'button') return;
+    spawnHeart(e.clientX, e.clientY);
+  });
+
+  // ====== Confetti (simple canvas) ======
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  let confetti = [];
+  let confettiRunning = false;
+
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function addConfetti(count=220){
+    const W = canvas.width, H = canvas.height;
+    for(let i=0;i<count;i++){
+      confetti.push({
+        x: Math.random()*W,
+        y: -10 - Math.random()*H*0.3,
+        r: 2 + Math.random()*4,
+        vy: 2 + Math.random()*4,
+        vx: -1 + Math.random()*2,
+        a: Math.random()*Math.PI*2,
+        va: -0.08 + Math.random()*0.16,
+        life: 260 + Math.random()*160
+      });
+    }
+  }
+
+  function step(){
+    if(!confettiRunning) return;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    const colors = ['#ff4da6','#ff7ac4','#6cf0ff','#b26bff','#ffd36c','#ffffff'];
+    for(const p of confetti){
+      p.x += p.vx;
+      p.y += p.vy;
+      p.a += p.va;
+      p.life -= 1;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.a);
+      ctx.fillStyle = colors[(Math.random()*colors.length)|0];
+      ctx.fillRect(-p.r, -p.r, p.r*2.4, p.r*1.2);
+      ctx.restore();
+    }
+
+    confetti = confetti.filter(p => p.life > 0 && p.y < canvas.height + 30);
+    if(confetti.length === 0){
+      confettiRunning = false;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      return;
+    }
+    requestAnimationFrame(step);
+  }
+
+  document.getElementById('btnConfetti').addEventListener('click', ()=>{
+    addConfetti(240);
+    confettiRunning = true;
+    step();
+  });
+
+  // ====== Scroll a fotos ======
+  document.getElementById('btnScroll').addEventListener('click', ()=>{
+    document.getElementById('fotos').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+</script>
+</body>
+</html>
+
